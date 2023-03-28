@@ -1,5 +1,7 @@
 "use strict";
+console.log('server is connected')
 require("dotenv").config();
+const axios = require('axios').default;
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -7,29 +9,31 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const mongoose = require("mongoose");
-const Dog = require("./models/dog.js");
+// const mongoose = require("mongoose");
+// const Dog = require("./models/dog.js");
 
-mongoose.connect(process.env.DB_URL);
+// mongoose.connect(process.env.DB_URL);  //need url
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  console.log("Mongoose is connected");
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", function () {
+//   console.log("Mongoose is connected");
+// });
 
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT || 5000;
 
 let dKey = process.env.dKey;
+axios.defaults.headers.common['X-Api-Key'] = dKey;
+
 
 
 app.get("/", (request, response) => {
   response.status(200).send("Hello! We're in the server!");
 });
 
-app.get("/dogs", )// dogfunc
-app.post('/dogs', )// dogfunc
-app.delete('/dogs/:id', )// dogfunc
+// app.get("/dogs", )// dogfunc
+// app.post('/dogs', )// dogfunc
+// app.delete('/dogs/:id', )// dogfunc
 
 // async function getDogs(request, response, next) {
 //   try {
@@ -45,11 +49,7 @@ app.get('/dogInfo', async (request, response, next) => {
     const searchQuery= request.query.dogType;
     // console.log(searchQuery, 'searchqy');
     let url = `https://api.api-ninjas.com/v1/dogs?name=${searchQuery}`;
-    let dogData = await axios.get(url, {
-      headers: {
-        'X-Api-Key': dKey
-      }
-    });
+    let dogData = await axios.get(url);
     console.log(dogData.data, 'dogdata');
     let dataTosend = dogData.data(description => new Dog(description));
     console.log(dataTosend, 'datatosend');
