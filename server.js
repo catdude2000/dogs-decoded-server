@@ -46,8 +46,8 @@ app.get("/", (request, response) => {
 
 app.get('/dogInfo', async (request, response, next) => {
   try {
-    const searchQuery= request.query.dogType;
-    // console.log(searchQuery, 'searchqy');
+    const searchQuery= request.query.searchQuery;
+    console.log(searchQuery, 'searchqy');
     let url = `https://api.api-ninjas.com/v1/dogs?name=${searchQuery}`;
     let dogData = await axios.get(url);
     console.log(dogData.data, 'dogdata');
