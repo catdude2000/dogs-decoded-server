@@ -47,13 +47,15 @@ app.get("/", (request, response) => {
 app.get('/dogInfo', async (request, response, next) => {
   try {
     const searchQuery= request.query.searchQuery;
-    console.log(searchQuery, 'searchqy');
+    // console.log(searchQuery, 'searchqy');
     let url = `https://api.api-ninjas.com/v1/dogs?name=${searchQuery}`;
     let dogData = await axios.get(url);
     console.log(dogData.data, 'dogdata');
-    let dataTosend = dogData.data(description => new Dog(description));
-    console.log(dataTosend, 'datatosend');
-    response.status(200).send(dataTosend);
+
+    let dataToSend = dogData.data.map((description) => new Dog(description));
+    console.log(dataToSend, 'datatosend');
+
+    response.status(200).send(dataToSend);
   } catch (error) {
     next;
     (error);
