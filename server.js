@@ -78,6 +78,15 @@ app.get('/dogInfo', async (request, response, next) => {
 class Dog{
   constructor(dogObject) {
     this.name = dogObject.name;
+    this.image = dogObject.image_link;
+    this.goodWithKids = dogObject.good_with_children;
+    this.goodWithDogs = dogObject.good_with_other_dogs;
+    this.shedAmount = dogObject.shedding;
+    this.groomingNeeded = dogObject.grooming;
+    this.drool = dogObject.drooling;
+    this.furLength = dogObject.coat_length;
+    this.goodWithOtherPeople = dogObject.good_with_strangers;
+    this.playful = dogObject.playfulness;
     this.barkingAmount = dogObject.barking;
     this.minHeightFemale = dogObject.min_height_female;
     this.maxHeightFemale = dogObject.max_height_female;
