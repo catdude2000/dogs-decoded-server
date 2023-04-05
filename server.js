@@ -79,10 +79,14 @@ class Dog{
   constructor(dogObject) {
     this.name = dogObject.name;
     this.barkingAmount = dogObject.barking;
-    this.minHeight = dogObject.min_height;
-    this.maxHeight = dogObject.max_height;
-    this.minWeight = dogObject.min_weight;
-    this.maxWeight = dogObject.max_weight;
+    this.minHeightFemale = dogObject.min_height_female;
+    this.maxHeightFemale = dogObject.max_height_female;
+    this.minWeightFemale = dogObject.min_weight_female;
+    this.maxWeightFemale = dogObject.max_weight_female;
+    this.minHeightMale = dogObject.min_height_male;
+    this.maxHeightMale = dogObject.max_height_male;
+    this.minWeightMale = dogObject.min_weight_male;
+    this.maxWeightMale = dogObject.max_weight_male;
     this.minLifeExpectancy = dogObject.min_life_expectancy;
     this.maxLifeExpectancy = dogObject.max_life_expectancy;
     this.energyAmount = dogObject.energy;
