@@ -105,7 +105,7 @@ class Dog{
 }
 
 app.get("*", (request, response) => {
-  response.statue(404).send("Not available");
+  response.status(404).send("Not available");
 });
 
 // eslint-disable-next-line no-unused-vars
